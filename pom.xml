@@ -82,10 +82,10 @@
           <version>2.2</version>
           <configuration>
             <username>admin</username>
-            <password>password</password>
-            <url>http:SERVEUR_IP/manager/text</url>
+            <password>admin</password>
+            <url>http:localhost/manager/text</url>
             <server>TomcatServer</server>
-            <path>/GiveMeAShow</path>
+            <path>/glyph-report</path>
           </configuration>
         </plugin>
       </plugins>
