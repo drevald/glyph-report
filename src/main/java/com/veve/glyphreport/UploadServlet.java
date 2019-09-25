@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -53,6 +55,15 @@ public class UploadServlet extends HttpServlet {
                     System.out.println("Not form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
+                    InputStream is = item.getInputStream();
+                    FileOutputStream fos = new FileOutputStream(new File(item.getName()));
+                    byte[] buffer = new byte[1000];
+                    while (is.read(buffer) != -1) {
+                        fos.write(buffer);
+                    }
+                    fos.flush();
+                    is.close();
+                    fos.close();
                 } else {
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
