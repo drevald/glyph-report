@@ -58,7 +58,7 @@ public class UploadServlet extends HttpServlet {
                 }
             }
             resp.setStatus(HttpServletResponse.SC_OK);
-            req.getRequestDispatcher("/upload.jsp").forward(req,resp);
+            req.getRequestDispatcher("/list.jsp").forward(req,resp);
         } catch (FileUploadException e) {
             e.printStackTrace();
         }  finally {
