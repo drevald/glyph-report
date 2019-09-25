@@ -55,6 +55,8 @@ public class UploadServlet extends HttpServlet {
                     System.out.println("item.getFieldName() = " + item.getFieldName());
                 } else {
                     System.out.println("Form field");
+                    System.out.println("item.getName() = " + item.getName());
+                    System.out.println("item.getFieldName() = " + item.getFieldName());
                 }
             }
             resp.setStatus(HttpServletResponse.SC_OK);
