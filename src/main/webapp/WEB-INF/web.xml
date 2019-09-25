@@ -3,13 +3,25 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
   <display-name>Flow reader reporting tool</display-name>
+
   <servlet>
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.UploadServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DbServlet</servlet-name>
+    <servlet-class>com.veve.glyphreport.DbServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/upload</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DbServlet</servlet-name>
+    <url-pattern>/db</url-pattern>
+  </servlet-mapping>
+
 </web-app>
