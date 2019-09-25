@@ -56,7 +56,8 @@ public class UploadServlet extends HttpServlet {
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
                     InputStream is = item.getInputStream();
-                    FileOutputStream fos = new FileOutputStream(new File(item.getName()));
+                    File file = new File(item.getName());
+                    FileOutputStream fos = new FileOutputStream(file);
                     byte[] buffer = new byte[1000];
                     while (is.read(buffer) != -1) {
                         fos.write(buffer);
@@ -64,6 +65,7 @@ public class UploadServlet extends HttpServlet {
                     fos.flush();
                     is.close();
                     fos.close();
+                    System.out.println("Uploaded file stored to " + file.getAbsolutePath());
                 } else {
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
