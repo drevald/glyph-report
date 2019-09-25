@@ -50,17 +50,17 @@ public class UploadServlet extends HttpServlet {
             for (Object itemObj : items) {
                 FileItem item = (FileItem) itemObj;
                 if (!item.isFormField()) {
-                    logger.debug("Not form field");
-                    logger.debug("item.getName() = " + item.getName());
-                    logger.debug("item.getFieldName() = " + item.getFieldName());
+                    System.out.println("Not form field");
+                    System.out.println("item.getName() = " + item.getName());
+                    System.out.println("item.getFieldName() = " + item.getFieldName());
                 } else {
-                    logger.debug("Form field");
+                    System.out.println("Form field");
                 }
             }
             resp.setStatus(HttpServletResponse.SC_OK);
             req.getRequestDispatcher("/upload.jsp").forward(req,resp);
         } catch (FileUploadException e) {
-            logger.error(e, e);
+            e.printStackTrace();
         }  finally {
 
         }
