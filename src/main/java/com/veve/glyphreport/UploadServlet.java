@@ -63,8 +63,6 @@ public class UploadServlet extends HttpServlet {
             req.getRequestDispatcher("/list.jsp").forward(req,resp);
         } catch (FileUploadException e) {
             e.printStackTrace();
-        }  finally {
-
         }
     }
 
