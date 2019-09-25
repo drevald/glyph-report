@@ -17,11 +17,11 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class MainServlet extends HttpServlet {
+public class UploadServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    private Logger logger = Logger.getLogger(MainServlet.class);
+    private Logger logger = Logger.getLogger(UploadServlet.class);
 
     private ServletFileUpload upload;
     private DiskFileItemFactory factory;
@@ -44,6 +44,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("!!! UPLOAD SERVLET");
         String sessionId = req.getSession().getId();
         try {
             @SuppressWarnings("unchecked")
