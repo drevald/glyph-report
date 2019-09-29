@@ -24,7 +24,7 @@ public class DetailsServlet extends HttpServlet {
         Enumeration<String> headerNames = req.getHeaderNames();
         while(headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
-            sb.append(headerName + ":" + req.getHeader(headerName));
+            sb.append(headerName + ":" + req.getHeader(headerName)+"\n");
         }
         sb.append("!!! DETAILS SERVLET - BODY:");
         InputStream is = req.getInputStream();
