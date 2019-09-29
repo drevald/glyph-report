@@ -29,8 +29,9 @@ public class DetailsServlet extends HttpServlet {
         sb.append("!!! DETAILS SERVLET - BODY:");
         InputStream is = req.getInputStream();
         byte[] buffer = new byte[1];
+        int counter = 0;
         while(is.read(buffer) != -1) {
-            sb.append(new String(buffer));
+            sb.append("#"+(counter++)+" "+(char)buffer[0]+"_"+(int)buffer[0]+"\n");
         }
         sb.append("!!! DETAILS SERVLET - END");
         System.out.println(sb.toString());
