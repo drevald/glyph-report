@@ -19,20 +19,23 @@ public class DetailsServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("!!! DETAILS SERVLET - HEADERS:");
+        StringBuilder sb = new StringBuilder();
+        sb.append("!!! DETAILS SERVLET - HEADERS:");
         Enumeration<String> headerNames = req.getHeaderNames();
         while(headerNames.hasMoreElements()) {
             String headerName = headerNames.nextElement();
-            System.out.println(headerName + ":" + req.getHeader(headerName));
+            sb.append(headerName + ":" + req.getHeader(headerName));
         }
-        System.out.println("!!! DETAILS SERVLET - BODY:");
+        sb.append("!!! DETAILS SERVLET - BODY:");
         InputStream is = req.getInputStream();
-        byte[] buffer = new byte[100];
+        byte[] buffer = new byte[1];
         while(is.read(buffer) != -1) {
-            System.out.println(new String(buffer));
+            sb.append(new String(buffer));
         }
-        System.out.println("!!! DETAILS SERVLET - END");
-
+        sb.append("!!! DETAILS SERVLET - END");
+        System.out.println(sb.toString());
+        resp.getOutputStream().write(sb.toString().getBytes());
+        resp.getOutputStream().close();
     }
 
 }
