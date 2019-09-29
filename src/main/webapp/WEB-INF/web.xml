@@ -8,8 +8,16 @@
     <servlet-name>UploadServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.UploadServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>DetailsServlet</servlet-name>
+    <servlet-class>com.veve.glyphreport.DetailsServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
     <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DetailsServlet</servlet-name>
+    <url-pattern>/details</url-pattern>
   </servlet-mapping>
 </web-app>
