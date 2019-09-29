@@ -9,7 +9,7 @@
 
 File dir = new File(".");
 for(File file : dir.listFiles()) {
-out.println(file.getPath() + "\t" + new Date(file.lastModified()));
+    out.println(file.getPath() + "\t" + new Date(file.lastModified()));
 }
 
 %>
