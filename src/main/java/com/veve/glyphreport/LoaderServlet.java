@@ -14,10 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.List;
 
 public class LoaderServlet extends HttpServlet {
@@ -79,8 +76,10 @@ public class LoaderServlet extends HttpServlet {
             pst.setBytes(2, reflowedImageStream.toByteArray());
             pst.setBytes(3, glyphsStream.toByteArray());
             pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-            pst.executeUpdate();
-
+            pst.execute();
+            ResultSet resultSet = pst.getResultSet();
+            int insertedId = resultSet.getInt(1);
+            System.out.println("Inserted row id is " + insertedId);
             resp.setStatus(HttpServletResponse.SC_OK);
             req.getRequestDispatcher("/list.jsp").forward(req,resp);
         } catch (Exception e) {
