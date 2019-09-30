@@ -78,8 +78,10 @@ public class LoaderServlet extends HttpServlet {
             pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
             pst.execute();
             ResultSet resultSet = pst.getResultSet();
-            int insertedId = resultSet.getInt(1);
-            System.out.println("Inserted row id is " + insertedId);
+            if (resultSet.next()) {
+                int insertedId = resultSet.getInt(1);
+                System.out.println("Inserted row id is " + insertedId);
+            }
             resp.setStatus(HttpServletResponse.SC_OK);
             req.getRequestDispatcher("/list.jsp").forward(req,resp);
         } catch (Exception e) {
