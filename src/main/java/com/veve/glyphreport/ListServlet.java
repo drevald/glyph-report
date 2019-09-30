@@ -35,7 +35,8 @@ public class ListServlet extends HttpServlet {
                         resultSet.getInt(1) + "\t" +
                         resultSet.getInt(2) + "\t" +
                         resultSet.getInt(3) + "\t" +
-                        resultSet.getTimestamp(4));
+                        resultSet.getInt(4) + "\t" +
+                        resultSet.getTimestamp(5));
             }
         } catch (Exception e) {
             e.printStackTrace();
