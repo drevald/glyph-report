@@ -11,9 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -47,9 +47,9 @@ public class LoaderServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        InputStream originalImageStream = null;
-        InputStream reflowedImageStream = null;
-        InputStream glyphsStream = null;
+        ByteArrayOutputStream originalImageStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream reflowedImageStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream glyphsStream = new ByteArrayOutputStream();
         try {
             @SuppressWarnings("unchecked")
             List<FileItem> items = upload.parseRequest(req);
@@ -62,17 +62,17 @@ public class LoaderServlet extends HttpServlet {
                     System.out.println("item.getFieldName() = " + item.getFieldName());
 
                     if ("overturnedImage".equals(item.getFieldName())) {
-                        originalImageStream = item.getInputStream();
+                        IOUtils.copy(item.getInputStream(), reflowedImageStream);
                     } else if ("originalImage".equals(item.getFieldName())) {
-                        reflowedImageStream = item.getInputStream();
+                        IOUtils.copy(item.getInputStream(), originalImageStream);
                     } else if ("glyphs".equals(item.getFieldName())) {
-                        glyphsStream = item.getInputStream();
+                        IOUtils.copy(item.getInputStream(), glyphsStream);
                     }
                     String stm = "INSERT INTO report_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col) VALUES (?,?,?,?)";
                     PreparedStatement pst = conn.prepareStatement(stm);
-                    pst.setBinaryStream(1, originalImageStream);
-                    pst.setBinaryStream(2, reflowedImageStream);
-                    pst.setBinaryStream(3, glyphsStream);
+                    pst.setBytes(1, originalImageStream.toByteArray());
+                    pst.setBytes(2, reflowedImageStream.toByteArray());
+                    pst.setBytes(3, glyphsStream.toByteArray());
                     pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
                     pst.executeUpdate();
                 } else {
