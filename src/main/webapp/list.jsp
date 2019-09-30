@@ -1,24 +1,11 @@
-<%@ page import="java.io.*" %>
+<%@ page import="com.veve.glyphreport.Report" %>
 <%@ page import="java.util.*" %>
-<head>
-<title>Directory Content</title>
-</head>
-<body>
-<pre>
 <%
 
-        try {
-            Class.forName("org.postgresql.Driver");
-            String dbUrl = System.getenv("JDBC_DATABASE_URL");
-            conn = DriverManager.getConnection(dbUrl);
-
-
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    List<Report> reports = (List<Report>)request.getAttribute("reports");
+    for (Shot shot:list) {
 %>
-</pre>
-</body>
+        <a href="image.jsp?id=<%=report.getId()%>"><%=report.getTimestamp()%></a><br/>
+<%
+    }
+%>
