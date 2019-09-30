@@ -32,14 +32,11 @@ public class UploadServlet extends HttpServlet {
         super.init();
         DiskFileItemFactory factory;
         FileCleaningTracker fileCleaningTracker;
-        // Create a factory for disk-based file items
         fileCleaningTracker = FileCleanerCleanup.getFileCleaningTracker(this.getServletContext());
         factory = new DiskFileItemFactory();
         factory.setRepository(new File("."));
         factory.setFileCleaningTracker(fileCleaningTracker);
-        // Create a new file upload handler
         upload = new ServletFileUpload(factory);
-
     }
 
     @Override

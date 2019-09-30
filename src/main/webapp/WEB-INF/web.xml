@@ -17,6 +17,10 @@
     <servlet-name>DatabaseServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.DatabaseServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LoaderServlet</servlet-name>
+    <servlet-class>com.veve.glyphreport.LoaderServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
@@ -29,6 +33,10 @@
   <servlet-mapping>
     <servlet-name>DatabaseServlet</servlet-name>
     <url-pattern>/db</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoaderServlet</servlet-name>
+    <url-pattern>/loader</url-pattern>
   </servlet-mapping>
 
 </web-app>
