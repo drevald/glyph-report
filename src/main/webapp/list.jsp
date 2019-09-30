@@ -3,7 +3,7 @@
 <%
 
     List<Report> reports = (List<Report>)request.getAttribute("reports");
-    for (Shot shot:list) {
+    for (Report report : reports) {
 %>
         <a href="image.jsp?id=<%=report.getId()%>"><%=report.getTimestamp()%></a><br/>
 <%
