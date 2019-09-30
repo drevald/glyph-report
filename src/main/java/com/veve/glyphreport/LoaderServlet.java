@@ -56,11 +56,9 @@ public class LoaderServlet extends HttpServlet {
             for (Object itemObj : items) {
                 FileItem item = (FileItem) itemObj;
                 if (!item.isFormField()) {
-
                     System.out.println("Not form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
-
                     if ("overturnedImage".equals(item.getFieldName())) {
                         IOUtils.copy(item.getInputStream(), reflowedImageStream);
                     } else if ("originalImage".equals(item.getFieldName())) {
@@ -68,19 +66,21 @@ public class LoaderServlet extends HttpServlet {
                     } else if ("glyphs".equals(item.getFieldName())) {
                         IOUtils.copy(item.getInputStream(), glyphsStream);
                     }
-                    String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col) VALUES (?,?,?,?)";
-                    PreparedStatement pst = conn.prepareStatement(stm);
-                    pst.setBytes(1, originalImageStream.toByteArray());
-                    pst.setBytes(2, reflowedImageStream.toByteArray());
-                    pst.setBytes(3, glyphsStream.toByteArray());
-                    pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
-                    pst.executeUpdate();
                 } else {
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
                 }
             }
+
+            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col) VALUES (?,?,?,?) RETURNING id_col";
+            PreparedStatement pst = conn.prepareStatement(stm);
+            pst.setBytes(1, originalImageStream.toByteArray());
+            pst.setBytes(2, reflowedImageStream.toByteArray());
+            pst.setBytes(3, glyphsStream.toByteArray());
+            pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+            pst.executeUpdate();
+
             resp.setStatus(HttpServletResponse.SC_OK);
             req.getRequestDispatcher("/list.jsp").forward(req,resp);
         } catch (Exception e) {
