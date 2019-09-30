@@ -7,10 +7,17 @@
 <pre>
 <%
 
-File dir = new File(".");
-for(File file : dir.listFiles()) {
-    out.println(file.getPath() + "\t" + new Date(file.lastModified()));
-}
+        try {
+            Class.forName("org.postgresql.Driver");
+            String dbUrl = System.getenv("JDBC_DATABASE_URL");
+            conn = DriverManager.getConnection(dbUrl);
+
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 %>
 </pre>

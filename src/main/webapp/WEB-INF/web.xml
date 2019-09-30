@@ -3,6 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
   <display-name>Flow reader reporting tool</display-name>
 
   <servlet>
@@ -21,6 +22,10 @@
     <servlet-name>LoaderServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.LoaderServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ListServlet</servlet-name>
+    <servlet-class>com.veve.glyphreport.ListServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
@@ -37,6 +42,10 @@
   <servlet-mapping>
     <servlet-name>LoaderServlet</servlet-name>
     <url-pattern>/loader</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ListServlet</servlet-name>
+    <url-pattern>/list</url-pattern>
   </servlet-mapping>
 
 </web-app>
