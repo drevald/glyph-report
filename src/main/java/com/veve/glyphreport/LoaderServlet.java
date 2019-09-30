@@ -68,7 +68,7 @@ public class LoaderServlet extends HttpServlet {
                     } else if ("glyphs".equals(item.getFieldName())) {
                         IOUtils.copy(item.getInputStream(), glyphsStream);
                     }
-                    String stm = "INSERT INTO report_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col) VALUES (?,?,?,?)";
+                    String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col) VALUES (?,?,?,?)";
                     PreparedStatement pst = conn.prepareStatement(stm);
                     pst.setBytes(1, originalImageStream.toByteArray());
                     pst.setBytes(2, reflowedImageStream.toByteArray());
