@@ -28,11 +28,7 @@ public class ListServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            PreparedStatement ps = conn.prepareStatement("SELECT id_col, " +
-                    "octet_length(original_page_col), " +
-                    "octet_length(reflowed_page_col), " +
-                    "octet_length(glyphs), " +
-                    "created_col) from reports_tbl");
+            PreparedStatement ps = conn.prepareStatement("select id_col, octet_length(original_page_col), octet_length(reflowed_page_col), octet_length(glyphs_col), created_col from reports_tbl");
             ResultSet resultSet = ps.executeQuery();
             while(resultSet.next()) {
                 System.out.println(
