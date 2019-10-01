@@ -14,15 +14,10 @@ public class ImageServlet extends DatabaseServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             System.out.println("req.getParameter(\"id\")"+req.getParameter("id"));
-            int id = 10;//Integer.getInteger(req.getParameter("id"));
-            PreparedStatement ps = conn.prepareStatement("SELECT original_page_col FROM reports_tbl WHERE id_col = ?");
-            ps.setInt(1, id);
-            ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next()) {
-                resp.getOutputStream().write(resultSet.getBytes(1));
-            } else {
-                resp.getOutputStream().write(("No report with id = " + id).getBytes());
-            }
+            String mode = req.getParameter("mode");
+            int id = Integer.getInteger(req.getParameter("id"));
+            byte[] data = getImage(id, mode);
+            resp.getOutputStream().write(data);
         } catch (Exception e) {
             e.printStackTrace();
             resp.getOutputStream().write(e.getMessage().getBytes());
@@ -30,6 +25,23 @@ public class ImageServlet extends DatabaseServlet {
             resp.getOutputStream().flush();
             resp.getOutputStream().close();
         }
+    }
+
+    public byte[] getImage(int id, String mode) throws Exception {
+        PreparedStatement ps = null;
+        byte[] result = null;
+        if ("original".equals(mode)) {
+            ps = conn.prepareStatement("SELECT original_page_col FROM reports_tbl WHERE id_col = ?");
+        } else if ("reflowed".equals(mode)) {
+            ps = conn.prepareStatement("SELECT reflowed_page_col FROM reports_tbl WHERE id_col = ?");
+        }
+            ps.setInt(1, id);
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+                result = resultSet.getBytes(1);
+            }
+            return result;
+
     }
 
 }
