@@ -13,7 +13,7 @@
         <tr>
             <th>Report Id</th>
             <th>Upload Time</th>
-            <th>Application version</th>
+            <th>App. ver.</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
@@ -29,10 +29,10 @@
             <td><%=report.getId()%></td>
             <td><%=report.getTimestamp()%></td>
             <td>undefined</td>
-            <td><a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a><br/></td>
-            <td><a href="glyph_page.jsp?id=<%=report.getId()%>&mode=glyphs">View Original with glyphs</a><br/></td>
-            <td><a href="reflowed_page.jsp?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a><br/></td>
-            <td><a href="delete?id=<%=report.getId()%>">Delete</a><br/></td>
+            <td>&nbsp;<a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a>&nbsp;</td>
+            <td>&nbsp;<a href="glyph_page.jsp?id=<%=report.getId()%>&mode=glyphs">View Original with glyphs</a>&nbsp;</td>
+            <td>&nbsp;<a href="reflowed_page.jsp?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a>&nbsp;</td>
+            <td>&nbsp;<a href="delete?id=<%=report.getId()%>">Delete</a><br/></td>
         </tr>
 <%
     }
