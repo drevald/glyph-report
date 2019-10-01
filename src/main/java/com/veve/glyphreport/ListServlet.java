@@ -30,7 +30,7 @@ public class ListServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<ReportHelper> reports = new ArrayList<ReportHelper>();
+        List<Report> reports = new ArrayList<Report>();
         try {
             PreparedStatement ps = conn.prepareStatement("select id_col, octet_length(original_page_col), octet_length(reflowed_page_col), octet_length(glyphs_col), created_col from reports_tbl");
             ResultSet resultSet = ps.executeQuery();
@@ -41,7 +41,7 @@ public class ListServlet extends HttpServlet {
                         resultSet.getInt(3) + "\t" +
                         resultSet.getInt(4) + "\t" +
                         resultSet.getTimestamp(5));
-                reports.add(new ReportHelper(resultSet.getInt(1), resultSet.getTimestamp(5)));
+                reports.add(new Report(resultSet.getInt(1), resultSet.getTimestamp(5)));
             }
             req.setAttribute("reports", reports);
         } catch (Exception e) {
