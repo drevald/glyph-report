@@ -15,7 +15,7 @@ public class ImageServlet extends DatabaseServlet {
         try {
             System.out.println("req.getParameter(\"id\")"+req.getParameter("id"));
             int id = 10;//Integer.getInteger(req.getParameter("id"));
-            PreparedStatement ps = conn.prepareStatement("original_page_col from reports_tbl where id = ?");
+            PreparedStatement ps = conn.prepareStatement("SELECT original_page_col FROM reports_tbl WHERE id = ?");
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             if(resultSet.next()) {
