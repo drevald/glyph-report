@@ -54,7 +54,7 @@ public class ImageServlet extends DatabaseServlet {
                 result = resultSet.getBytes(1);
             }
         } else if ("glyphs".equals(mode)) {
-            ps = conn.prepareStatement("SELECT original_page_col, glyphs FROM reports_tbl WHERE id_col = ?");
+            ps = conn.prepareStatement("SELECT original_page_col, glyphs_col FROM reports_tbl WHERE id_col = ?");
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
