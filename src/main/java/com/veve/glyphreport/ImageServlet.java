@@ -2,6 +2,7 @@ package com.veve.glyphreport;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.veve.flowreader.dao.PageGlyphRecord;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
