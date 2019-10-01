@@ -3,7 +3,7 @@ package com.veve.glyphreport;
 
 import java.sql.Timestamp;
 
-public class Report {
+public class ReportHelper {
 
     int id;
     Timestamp timestamp;
@@ -24,7 +24,7 @@ public class Report {
         this.timestamp = timestamp;
     }
 
-    public Report(int id, Timestamp timestamp) {
+    public ReportHelper(int id, Timestamp timestamp) {
         this.id = id;
         this.timestamp = timestamp;
     }

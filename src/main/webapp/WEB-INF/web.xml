@@ -26,6 +26,10 @@
     <servlet-name>ListServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.ListServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>ImageServlet</servlet-name>
+    <servlet-class>com.veve.glyphreport.ImageServlet</servlet-class>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
@@ -46,6 +50,10 @@
   <servlet-mapping>
     <servlet-name>ListServlet</servlet-name>
     <url-pattern>/list</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ImageServlet</servlet-name>
+    <url-pattern>/image</url-pattern>
   </servlet-mapping>
 
 </web-app>

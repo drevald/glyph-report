@@ -10,14 +10,14 @@ import java.sql.DriverManager;
 
 public class DatabaseServlet extends HttpServlet {
 
-    @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    Connection conn;
+
+    public void init() throws ServletException {
+        super.init();
         try {
             Class.forName("org.postgresql.Driver");
             String dbUrl = System.getenv("JDBC_DATABASE_URL");
-            System.out.println("JDBC_DATABASE_URL " + dbUrl);
-            Connection conn = DriverManager.getConnection(dbUrl);
-            System.out.println(conn.toString());
+            conn = DriverManager.getConnection(dbUrl);
         } catch (Exception e) {
             e.printStackTrace();
         }
