@@ -1,9 +1,9 @@
 package com.veve.glyphreport;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.imageio.ImageIO;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,17 +58,20 @@ public class ImageServlet extends DatabaseServlet {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
+
+                ObjectMapper mapper = new ObjectMapper(); // create once, reuse
+                java.util.List<PageGlyphRecord> glyphsRecordRestored = mapper.readValue(resultSet.getBytes(2), new TypeReference<List<PageGlyphRecord>>(){});
+                System.out.println(glyphsRecordRestored);
+                System.out.println(glyphsRecordRestored.size());
+
                 InputStream is = new ByteArrayInputStream(resultSet.getBytes(1));
                 BufferedImage buffOriginalImage = ImageIO.read(is);
                 Graphics2D g = buffOriginalImage.createGraphics();
                 g.setColor(Color.RED);
                 g.fillRect(100, 200, 300, 400);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
-                System.out.println("os size before is " + os.toByteArray().length);
                 ImageIO.write(buffOriginalImage, "jpg", os);
-                System.out.println("os size now is " + os.toByteArray().length);
                 os.close();
-                System.out.println("os size finally is " + os.toByteArray().length);
                 result = os.toByteArray();
             }
         }
