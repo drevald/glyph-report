@@ -15,11 +15,7 @@ public class ImageServlet extends DatabaseServlet {
         try {
             System.out.println("req.getParameter(\"id\")"+req.getParameter("id"));
             String mode = req.getParameter("mode");
-            String idString = req.getParameter("id");
-            int id = 18;
-            if (idString != null) {
-                id = Integer.getInteger(idString);
-            }
+            int id = Integer.parseInt(req.getParameter("id"));
             byte[] data = getImage(id, mode);
             resp.getOutputStream().write(data);
         } catch (Exception e) {
@@ -39,13 +35,12 @@ public class ImageServlet extends DatabaseServlet {
         } else if ("reflowed".equals(mode)) {
             ps = conn.prepareStatement("SELECT reflowed_page_col FROM reports_tbl WHERE id_col = ?");
         }
-            ps.setInt(1, id);
-            ResultSet resultSet = ps.executeQuery();
-            if(resultSet.next()) {
-                result = resultSet.getBytes(1);
-            }
-            return result;
-
+        ps.setInt(1, id);
+        ResultSet resultSet = ps.executeQuery();
+        if(resultSet.next()) {
+            result = resultSet.getBytes(1);
+        }
+        return result;
     }
 
 }
