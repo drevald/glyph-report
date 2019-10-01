@@ -6,9 +6,9 @@
 <img src='image?id=<%=request.getParameter("id")%>&mode=reflowed' width="100%" border="1">
 </td>
 <td width="50%" valign="top">
-<a href="original_page.jsp?id=<%=request.getParameter("id")%>&mode=original">View Original</a><br/>
-<a href="glyph_page.jsp?id=<%=request.getParameter("id")%>&mode=glyphs">View Original with glyphs</a><br/>
-<a href="reflowed_page.jsp?id=<%=request.getParameter("id")%>&mode=reflowed">View Reflowed</a><br/>
+&nbsp;&nbsp;<a href="original_page.jsp?id=<%=request.getParameter("id")%>&mode=original">View Original</a><br/>
+&nbsp;&nbsp;<a href="glyph_page.jsp?id=<%=request.getParameter("id")%>&mode=glyphs">View Original with glyphs</a><br/>
+&nbsp;&nbsp;<a href="reflowed_page.jsp?id=<%=request.getParameter("id")%>&mode=reflowed">View Reflowed</a><br/>
 </td>
 </tr>
 </table>
