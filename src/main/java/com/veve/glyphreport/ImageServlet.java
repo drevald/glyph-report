@@ -15,7 +15,11 @@ public class ImageServlet extends DatabaseServlet {
         try {
             System.out.println("req.getParameter(\"id\")"+req.getParameter("id"));
             String mode = req.getParameter("mode");
-            int id = 18;//Integer.getInteger(req.getParameter("id"));
+            String idString = req.getParameter("id");
+            int id = 18;
+            if (idString != null) {
+                id = Integer.getInteger(idString);
+            }
             byte[] data = getImage(id, mode);
             resp.getOutputStream().write(data);
         } catch (Exception e) {
