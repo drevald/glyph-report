@@ -3,7 +3,7 @@
 <table width="100%">
 <tr>
 <td width="50%" valign="top">
-<img src='image?id=<%=request.getParameter("id")%>&mode=reflowed' width="50%" border="1">
+<img src='image?id=<%=request.getParameter("id")%>&mode=reflowed' width="100%" border="1">
 </td>
 <td width="50%" valign="top">
 <a href="original_page.jsp?id=<%=request.getParameter("id")%>&mode=original">View Original</a><br/>
