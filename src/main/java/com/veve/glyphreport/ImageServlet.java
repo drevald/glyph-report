@@ -13,7 +13,8 @@ public class ImageServlet extends DatabaseServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            int id = Integer.getInteger(req.getParameter("id"));
+            System.out.println("req.getParameter(\"id\")"+req.getParameter("id"));
+            int id = 10;//Integer.getInteger(req.getParameter("id"));
             PreparedStatement ps = conn.prepareStatement("original_page_col from reports_tbl where id = ?");
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
@@ -26,6 +27,7 @@ public class ImageServlet extends DatabaseServlet {
             e.printStackTrace();
             resp.getOutputStream().write(e.getMessage().getBytes());
         } finally {
+            resp.getOutputStream().flush();
             resp.getOutputStream().close();
         }
     }
