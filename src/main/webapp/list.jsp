@@ -30,7 +30,7 @@
             <td><%=report.getTimestamp()%></td>
             <td>undefined</td>
             <td><a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a><br/></td>
-            <td><a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original with glyphs</a><br/></td>
+            <td><a href="glyph_page.jsp?id=<%=report.getId()%>&mode=glyphs">View Original with glyphs</a><br/></td>
             <td><a href="reflowed_page.jsp?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a><br/></td>
             <td><a href="delete?id=<%=report.getId()%>">Delete</a><br/></td>
         </tr>
