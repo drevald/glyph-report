@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ImageServlet extends DatabaseServlet {
 
+    private static final Font FONT = new Font(Font.MONOSPACED, Font.PLAIN, 10);
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
@@ -68,11 +70,13 @@ public class ImageServlet extends DatabaseServlet {
                 InputStream is = new ByteArrayInputStream(resultSet.getBytes(1));
                 BufferedImage buffOriginalImage = ImageIO.read(is);
                 Graphics2D g = buffOriginalImage.createGraphics();
+                int counter = 0;
                 g.setColor(Color.RED);
+                g.setFont(FONT);
                 for (PageGlyphRecord glyph : glyphsRecordRestored) {
                     g.drawRect(glyph.getX(), glyph.getY(), glyph.getWidth(), glyph.getHeight());
+                    g.drawString(""+counter++, glyph.getX()- 2, glyph.getY());
                 }
-                g.fillRect(100, 200, 300, 400);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
                 ImageIO.write(buffOriginalImage, "jpg", os);
                 os.close();
