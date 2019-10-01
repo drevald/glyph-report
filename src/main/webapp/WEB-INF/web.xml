@@ -30,6 +30,11 @@
     <servlet-name>ImageServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.ImageServlet</servlet-class>
   </servlet>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>com.veve.glyphreport.DeleteServlet</servlet-class>
+    </servlet>
+
 
   <servlet-mapping>
     <servlet-name>UploadServlet</servlet-name>
@@ -55,5 +60,9 @@
     <servlet-name>ImageServlet</servlet-name>
     <url-pattern>/image</url-pattern>
   </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
 
 </web-app>

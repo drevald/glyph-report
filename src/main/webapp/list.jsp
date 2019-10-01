@@ -1,5 +1,14 @@
 <%@ page import="com.veve.glyphreport.Report" %>
 <%@ page import="java.util.*" %>
+<header>
+<style>
+.td {
+  padding-right: 30px;
+  padding-left: 80px;
+}
+</style>
+</header>
+<body>
 <table>
         <tr>
             <th>Report Id</th>
@@ -23,9 +32,10 @@
             <td><a href="image?id=<%=report.getId()%>&mode=original">View Original</a><br/></td>
             <td><a href="image?id=<%=report.getId()%>&mode=original">View Original with glyphs</a><br/></td>
             <td><a href="image?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a><br/></td>
-            <td><a href="image?id=<%=report.getId()%>">Delete</a><br/></td>
+            <td><a href="delete?id=<%=report.getId()%>">Delete</a><br/></td>
         </tr>
 <%
     }
 %>
 </table>
+</body>
