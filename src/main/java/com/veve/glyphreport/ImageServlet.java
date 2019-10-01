@@ -64,12 +64,14 @@ public class ImageServlet extends DatabaseServlet {
                 byte[] glypsBytes = resultSet.getBytes(2);
                 System.out.println("!!! GLYPHS AS JSON START:\n" + new String(glypsBytes) + "\n!!!ENDS");
                 java.util.List<PageGlyphRecord> glyphsRecordRestored = mapper.readValue(resultSet.getBytes(2), new TypeReference<List<PageGlyphRecord>>(){});
-                System.out.println(glyphsRecordRestored);
-                System.out.println(glyphsRecordRestored.size());
+
                 InputStream is = new ByteArrayInputStream(resultSet.getBytes(1));
                 BufferedImage buffOriginalImage = ImageIO.read(is);
                 Graphics2D g = buffOriginalImage.createGraphics();
                 g.setColor(Color.RED);
+                for (PageGlyphRecord glyph : glyphsRecordRestored) {
+                    g.drawRect(glyph.getX(), glyph.getY(), glyph.getWidth(), glyph.getHeight());
+                }
                 g.fillRect(100, 200, 300, 400);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
                 ImageIO.write(buffOriginalImage, "jpg", os);
