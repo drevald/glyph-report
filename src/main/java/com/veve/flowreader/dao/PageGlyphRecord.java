@@ -1,7 +1,10 @@
 package com.veve.flowreader.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class PageGlyphRecord implements Serializable {
 
     private static final String GLYPH_JSON = "{\"x\":\"%d\", \"y\":\"%d\", \"width\":\"%d\", \"height\":\"%d\", \"baselineShift\":\"%d\",\"averageHeight\":\"%d\",\"indented\":\"%b\"}";
