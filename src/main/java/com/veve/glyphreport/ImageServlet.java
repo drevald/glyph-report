@@ -64,7 +64,11 @@ public class ImageServlet extends DatabaseServlet {
                 g.setColor(Color.RED);
                 g.fillRect(100, 200, 300, 400);
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
+                System.out.println("os size before is " + os.toByteArray().length);
                 ImageIO.write(buffOriginalImage, "jpg", os);
+                System.out.println("os size now is " + os.toByteArray().length);
+                os.close();
+                System.out.println("os size finally is " + os.toByteArray().length);
                 result = os.toByteArray();
             }
         }
