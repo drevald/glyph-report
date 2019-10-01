@@ -29,7 +29,7 @@
             <td><%=report.getId()%></td>
             <td><%=report.getTimestamp()%></td>
             <td>undefined</td>
-            <td><a href="image?id=<%=report.getId()%>&mode=original">View Original</a><br/></td>
+            <td><a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a><br/></td>
             <td><a href="image?id=<%=report.getId()%>&mode=original">View Original with glyphs</a><br/></td>
             <td><a href="image?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a><br/></td>
             <td><a href="delete?id=<%=report.getId()%>">Delete</a><br/></td>
