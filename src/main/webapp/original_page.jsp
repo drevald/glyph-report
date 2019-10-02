@@ -1,5 +1,5 @@
-<%@ page import="com.veve.glyphreport.Report" %>
-<%@ page import="java.util.*" %>
+<%@ include file = "top.jsp"%>
+
 <table width="100%">
 <tr>
 <td width="50%" valign="top">
