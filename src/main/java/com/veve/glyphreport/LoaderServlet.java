@@ -19,7 +19,6 @@ import java.util.List;
 
 public class LoaderServlet extends DatabaseServlet {
 
-    Connection conn;
     private ServletFileUpload upload;
 
     public void init() throws ServletException {
