@@ -57,6 +57,7 @@ public class LoaderServlet extends DatabaseServlet {
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
+                    System.out.println("item.getString() = " + item.getString());
                 }
             }
 
