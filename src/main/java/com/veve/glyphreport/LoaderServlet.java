@@ -74,7 +74,7 @@ public class LoaderServlet extends DatabaseServlet {
                 System.out.println("Inserted row id is " + insertedId);
             }
             resp.setStatus(HttpServletResponse.SC_OK);
-            req.getRequestDispatcher("/list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
