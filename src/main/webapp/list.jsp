@@ -19,7 +19,7 @@
         <tr>
             <td><%=report.getId()%></td>
             <td><%=report.getTimestamp()%></td>
-            <td><%=report.getAppVersion()%>"></td>
+            <td><%=report.getAppVersion()%></td>
             <td>&nbsp;<a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a>&nbsp;</td>
             <td>&nbsp;<a href="glyph_page.jsp?id=<%=report.getId()%>&mode=glyphs">View Original with glyphs</a>&nbsp;</td>
             <td>&nbsp;<a href="reflowed_page.jsp?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a>&nbsp;</td>
