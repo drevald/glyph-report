@@ -16,7 +16,7 @@
     int nextId = Id + 1 ;
 
 %>
-<a href"original_page.jsp?id=<%=prevId%>&mode=original"><img src="left.jpg" height="100%"></a>
+<a href="original_page.jsp?id=<%=prevId%>&mode=original"><img src="left.jpg" height="100%"></a>
 </td>
 <td>
 &nbsp;&nbsp;<a href="original_page.jsp?id=<%=request.getParameter("id")%>&mode=original">View Original</a><br/>
@@ -24,7 +24,7 @@
 &nbsp;&nbsp;<a href="reflowed_page.jsp?id=<%=request.getParameter("id")%>&mode=reflowed">View Reflowed</a><br/>
 </td>
 <td>
-<a href"original_page.jsp?id=<%=nextId%>&mode=original"><img src="left.jpg" height="100%"></a>
+<a href="original_page.jsp?id=<%=nextId%>&mode=original"><img src="left.jpg" height="100%"></a>
 </td>
 </tr>
 </table>
