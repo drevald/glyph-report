@@ -7,14 +7,6 @@
   <display-name>Flow reader reporting tool</display-name>
 
   <servlet>
-    <servlet-name>UploadServlet</servlet-name>
-    <servlet-class>com.veve.glyphreport.UploadServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>DetailsServlet</servlet-name>
-    <servlet-class>com.veve.glyphreport.DetailsServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>DatabaseServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.DatabaseServlet</servlet-class>
   </servlet>
@@ -30,20 +22,11 @@
     <servlet-name>ImageServlet</servlet-name>
     <servlet-class>com.veve.glyphreport.ImageServlet</servlet-class>
   </servlet>
-    <servlet>
-        <servlet-name>DeleteServlet</servlet-name>
-        <servlet-class>com.veve.glyphreport.DeleteServlet</servlet-class>
-    </servlet>
+  <servlet>
+      <servlet-name>DeleteServlet</servlet-name>
+      <servlet-class>com.veve.glyphreport.DeleteServlet</servlet-class>
+  </servlet>
 
-
-  <servlet-mapping>
-    <servlet-name>UploadServlet</servlet-name>
-    <url-pattern>/upload</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DetailsServlet</servlet-name>
-    <url-pattern>/details</url-pattern>
-  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DatabaseServlet</servlet-name>
     <url-pattern>/db</url-pattern>

@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 
-public class LoaderServlet extends HttpServlet {
+public class LoaderServlet extends DatabaseServlet {
 
     Connection conn;
     private ServletFileUpload upload;
@@ -31,15 +31,6 @@ public class LoaderServlet extends HttpServlet {
         factory.setRepository(new File("."));
         factory.setFileCleaningTracker(fileCleaningTracker);
         upload = new ServletFileUpload(factory);
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            String dbUrl = System.getenv("JDBC_DATABASE_URL");
-            conn = DriverManager.getConnection(dbUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     @Override
