@@ -34,6 +34,7 @@ public class ListServlet extends HttpServlet {
         try {
             PreparedStatement ps = conn.prepareStatement("select id_col, octet_length(original_page_col), octet_length(reflowed_page_col), octet_length(glyphs_col), created_col from reports_tbl");
             ResultSet resultSet = ps.executeQuery();
+            System.out.println("resultSet.getFetchSize() is " + resultSet.getFetchSize());
             while(resultSet.next()) {
                 System.out.println(
                         resultSet.getInt(1) + "\t" +
