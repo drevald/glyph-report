@@ -13,36 +13,20 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListServlet extends HttpServlet {
-
-    Connection conn;
-
-    public void init() throws ServletException {
-        super.init();
-        try {
-            Class.forName("org.postgresql.Driver");
-            String dbUrl = System.getenv("JDBC_DATABASE_URL");
-            conn = DriverManager.getConnection(dbUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+public class ListServlet extends DatabaseServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<Report> reports = new ArrayList<Report>();
         try {
-            PreparedStatement ps = conn.prepareStatement("select id_col, octet_length(original_page_col), octet_length(reflowed_page_col), octet_length(glyphs_col), created_col from reports_tbl");
+            PreparedStatement ps = conn.prepareStatement("select id_col, app_version_col, created_col from reports_tbl");
             ResultSet resultSet = ps.executeQuery();
             System.out.println("resultSet.getFetchSize() is " + resultSet.getFetchSize());
             while(resultSet.next()) {
-                System.out.println(
-                        resultSet.getInt(1) + "\t" +
-                        resultSet.getInt(2) + "\t" +
-                        resultSet.getInt(3) + "\t" +
-                        resultSet.getInt(4) + "\t" +
-                        resultSet.getTimestamp(5));
-                reports.add(new Report(resultSet.getInt(1), resultSet.getTimestamp(5)));
+                reports.add(new Report(
+                        resultSet.getInt("id_col"),
+                        resultSet.getString("app_version_col"),
+                        resultSet.getTimestamp("created_col")));
             }
             req.setAttribute("reports", reports);
         } catch (Exception e) {

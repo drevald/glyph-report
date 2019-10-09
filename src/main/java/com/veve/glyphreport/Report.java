@@ -6,7 +6,18 @@ import java.sql.Timestamp;
 public class Report {
 
     int id;
+
     Timestamp timestamp;
+
+    String appVersion;
+
+    public String getAppVersion() {
+        return appVersion;
+    }
+
+    public void setAppVersion(String appVersion) {
+        this.appVersion = appVersion;
+    }
 
     public int getId() {
         return id;
@@ -24,8 +35,9 @@ public class Report {
         this.timestamp = timestamp;
     }
 
-    public Report(int id, Timestamp timestamp) {
+    public Report(int id, String appVersion, Timestamp timestamp) {
         this.id = id;
         this.timestamp = timestamp;
+        this.appVersion = appVersion;
     }
 }

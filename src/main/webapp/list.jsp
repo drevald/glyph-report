@@ -1,14 +1,4 @@
-<%@ page import="com.veve.glyphreport.Report" %>
-<%@ page import="java.util.*" %>
-<header>
-<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-<style>
-.td {
-  padding-right: 30px;
-  padding-left: 80px;
-}
-</style>
-</header>
+<%@ include file = "top.jsp"%>
 <body>
 <table>
         <tr>
@@ -29,7 +19,7 @@
         <tr>
             <td><%=report.getId()%></td>
             <td><%=report.getTimestamp()%></td>
-            <td>undefined</td>
+            <td><%=report.getAppVersion()%></td>
             <td>&nbsp;<a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a>&nbsp;</td>
             <td>&nbsp;<a href="glyph_page.jsp?id=<%=report.getId()%>&mode=glyphs">View Original with glyphs</a>&nbsp;</td>
             <td>&nbsp;<a href="reflowed_page.jsp?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a>&nbsp;</td>

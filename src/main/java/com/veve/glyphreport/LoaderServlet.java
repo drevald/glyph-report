@@ -17,9 +17,8 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 
-public class LoaderServlet extends HttpServlet {
+public class LoaderServlet extends DatabaseServlet {
 
-    Connection conn;
     private ServletFileUpload upload;
 
     public void init() throws ServletException {
@@ -31,15 +30,6 @@ public class LoaderServlet extends HttpServlet {
         factory.setRepository(new File("."));
         factory.setFileCleaningTracker(fileCleaningTracker);
         upload = new ServletFileUpload(factory);
-
-        try {
-            Class.forName("org.postgresql.Driver");
-            String dbUrl = System.getenv("JDBC_DATABASE_URL");
-            conn = DriverManager.getConnection(dbUrl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     @Override
@@ -47,6 +37,7 @@ public class LoaderServlet extends HttpServlet {
         ByteArrayOutputStream originalImageStream = new ByteArrayOutputStream();
         ByteArrayOutputStream reflowedImageStream = new ByteArrayOutputStream();
         ByteArrayOutputStream glyphsStream = new ByteArrayOutputStream();
+        String appVersion = null;
         try {
             @SuppressWarnings("unchecked")
             List<FileItem> items = upload.parseRequest(req);
@@ -64,18 +55,23 @@ public class LoaderServlet extends HttpServlet {
                         IOUtils.copy(item.getInputStream(), glyphsStream);
                     }
                 } else {
+                    if ("version".equals(item.getFieldName())) {
+                        appVersion = item.getString();
+                    }
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
+                    System.out.println("item.getString() = " + item.getString());
                 }
             }
 
-            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col) VALUES (?,?,?,?) RETURNING id_col";
+            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, app_version_col, created_col) VALUES (?,?,?,?,?) RETURNING id_col";
             PreparedStatement pst = conn.prepareStatement(stm);
             pst.setBytes(1, originalImageStream.toByteArray());
             pst.setBytes(2, reflowedImageStream.toByteArray());
             pst.setBytes(3, glyphsStream.toByteArray());
-            pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+            pst.setString(4, appVersion);
+            pst.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
             pst.execute();
             ResultSet resultSet = pst.getResultSet();
             if (resultSet.next()) {
@@ -83,7 +79,7 @@ public class LoaderServlet extends HttpServlet {
                 System.out.println("Inserted row id is " + insertedId);
             }
             resp.setStatus(HttpServletResponse.SC_OK);
-            req.getRequestDispatcher("/list.jsp").forward(req,resp);
+            req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

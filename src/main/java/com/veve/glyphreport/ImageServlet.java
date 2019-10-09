@@ -64,9 +64,9 @@ public class ImageServlet extends DatabaseServlet {
 
                 ObjectMapper mapper = new ObjectMapper(); // create once, reuse
                 byte[] glypsBytes = resultSet.getBytes(2);
-                System.out.println("!!! GLYPHS AS JSON START:\n" + new String(glypsBytes) + "\n!!!ENDS");
-                java.util.List<PageGlyphRecord> glyphsRecordRestored = mapper.readValue(resultSet.getBytes(2), new TypeReference<List<PageGlyphRecord>>(){});
-
+                //System.out.println("!!! GLYPHS AS JSON START:\n" + new String(glypsBytes) + "\n!!!ENDS");
+                java.util.List<PageGlyphRecord> glyphsRecordRestored =
+                        mapper.readValue(resultSet.getBytes(2), new TypeReference<List<PageGlyphRecord>>(){});
                 InputStream is = new ByteArrayInputStream(resultSet.getBytes(1));
                 BufferedImage buffOriginalImage = ImageIO.read(is);
                 Graphics2D g = buffOriginalImage.createGraphics();
