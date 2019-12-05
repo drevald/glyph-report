@@ -61,7 +61,6 @@ public class ImageServlet extends DatabaseServlet {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
-
                 ObjectMapper mapper = new ObjectMapper(); // create once, reuse
                 byte[] glypsBytes = resultSet.getBytes(2);
                 //System.out.println("!!! GLYPHS AS JSON START:\n" + new String(glypsBytes) + "\n!!!ENDS");
