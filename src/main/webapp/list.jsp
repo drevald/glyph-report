@@ -22,7 +22,7 @@
             <td>&nbsp;<a href="original_page.jsp?id=<%=report.getId()%>&mode=original">View Original</a>&nbsp;</td>
             <td>&nbsp;<a href="glyph_page.jsp?id=<%=report.getId()%>&mode=glyphs">View Original with glyphs</a>&nbsp;</td>
             <td>&nbsp;<a href="reflowed_page.jsp?id=<%=report.getId()%>&mode=reflowed">View Reflowed</a>&nbsp;</td>
-            <td>&nbsp;<a href="delete?id=<%=rCeport.getId()%>">Delete</a><br/></td>
+            <td>&nbsp;<a href="delete?id=<%=report.getId()%>">Delete</a><br/></td>
         </tr>
 <%
     }
