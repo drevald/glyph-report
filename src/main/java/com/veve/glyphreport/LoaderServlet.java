@@ -38,6 +38,8 @@ public class LoaderServlet extends DatabaseServlet {
         ByteArrayOutputStream reflowedImageStream = new ByteArrayOutputStream();
         ByteArrayOutputStream glyphsStream = new ByteArrayOutputStream();
         String appVersion = null;
+        String deviceModel = null;
+        String sdk = null;
         try {
             @SuppressWarnings("unchecked")
             List<FileItem> items = upload.parseRequest(req);
@@ -58,6 +60,12 @@ public class LoaderServlet extends DatabaseServlet {
                     if ("version".equals(item.getFieldName())) {
                         appVersion = item.getString();
                     }
+                    if ("deviceModel".equals(item.getFieldName())) {
+                        deviceModel = item.getString();
+                    }
+                    if ("sdk".equals(item.getFieldName())) {
+                        sdk = item.getString();
+                    }
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
@@ -70,8 +78,10 @@ public class LoaderServlet extends DatabaseServlet {
             pst.setBytes(1, originalImageStream.toByteArray());
             pst.setBytes(2, reflowedImageStream.toByteArray());
             pst.setBytes(3, glyphsStream.toByteArray());
-            pst.setString(4, appVersion);
-            pst.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+            pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+            pst.setString(5, appVersion);
+            pst.setString(6, deviceModel);
+            pst.setString(7, sdk);
             pst.execute();
             ResultSet resultSet = pst.getResultSet();
             if (resultSet.next()) {

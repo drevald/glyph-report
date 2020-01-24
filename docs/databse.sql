@@ -6,4 +6,6 @@ CREATE TABLE reports_tbl (
   created_col timestamp
 );
 
+ALTER TABLE reports_tbl ADD 'device_model' varchar(64), sdk varchar(4) AFTER glyphs_col
+
 COMMIT
