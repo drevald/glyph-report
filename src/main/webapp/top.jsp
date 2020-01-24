@@ -7,6 +7,9 @@
   padding-right: 30px;
   padding-left: 80px;
 }
+a. {
+    size: 24pt
+}
 </style>
 </header>
 <a href="list">HOME</a>

@@ -12,7 +12,6 @@
         </tr>
 
 <%
-
     List<Report> reports = (List<Report>)request.getAttribute("reports");
     for (Report report : reports) {
 %>
