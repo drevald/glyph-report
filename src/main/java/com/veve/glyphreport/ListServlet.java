@@ -21,11 +21,11 @@ public class ListServlet extends DatabaseServlet {
             System.out.println("resultSet.getFetchSize() is " + resultSet.getFetchSize());
             while(resultSet.next()) {
                 reports.add(new Report(
-                        resultSet.getInt("id_col"),
-                        resultSet.getString("app_version_col"),
-                        resultSet.getTimestamp("created_col"),
-                resultSet.getString("device_moder"),
-                        resultSet.getString("sdk")));
+                    resultSet.getInt("id_col"),
+                    resultSet.getString("app_version_col"),
+                    resultSet.getTimestamp("created_col"),
+                    resultSet.getString("device_model"),
+                    resultSet.getString("sdk")));
             }
             req.setAttribute("reports", reports);
         } catch (Exception e) {
