@@ -73,7 +73,7 @@ public class LoaderServlet extends DatabaseServlet {
                 }
             }
 
-            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, app_version_col, created_col) VALUES (?,?,?,?,?) RETURNING id_col";
+            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col, app_version_col, device_model, sdk) VALUES (?,?,?,?,?,?,?) RETURNING id_col";
             PreparedStatement pst = conn.prepareStatement(stm);
             pst.setBytes(1, originalImageStream.toByteArray());
             pst.setBytes(2, reflowedImageStream.toByteArray());
