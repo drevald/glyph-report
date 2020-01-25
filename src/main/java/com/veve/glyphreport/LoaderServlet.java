@@ -92,6 +92,7 @@ public class LoaderServlet extends DatabaseServlet {
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.getOutputStream().write(insertedId);
             resp.flushBuffer();
+            System.out.println("Response sent");
             //req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,26 +106,3 @@ public class LoaderServlet extends DatabaseServlet {
 
 }
 
-
-
-
-
-//    public MesaDAO (Mesa mesa) {
-//        this.mesa = mesa;
-//    }
-//(...)
-//        String stm = "INSERT INTO mesa(tag, modelo, menor_complemento, peso_min, "
-//        + "peso_max, som, rotina, address64bits) "
-//        + "VALUES(?,?,?,?,?,?,?,?)";
-//        try {
-//        pst = con.prepareStatement(stm);
-//        pst.setString(1, mesa.getTag());
-//        pst.setString(2, mesa.getModelo());
-//        pst.setInt(3, mesa.getMenorComplemento());
-//        pst.setInt(4, mesa.getPesoMin());
-//        pst.setInt(5, mesa.getPesoMax());
-//        pst.setByte(6, mesa.getSom());
-//        pst.setByte(7, mesa.getRotina());
-//        pst.setBytes(8, mesa.getAddress64Bits());
-//        pst.executeUpdate();
-//        (...)
