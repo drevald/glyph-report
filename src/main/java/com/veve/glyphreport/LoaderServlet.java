@@ -91,13 +91,11 @@ public class LoaderServlet extends DatabaseServlet {
                 System.out.println("Inserted row id is " + insertedId);
             }
             resp.setStatus(HttpServletResponse.SC_OK);
-            //resp.getOutputStream().write(insertedId);
             DataOutputStream os = new DataOutputStream(resp.getOutputStream());
-            os.writeLong(123456789123456789L);
+            os.writeLong(insertedId);
             os.flush();
             resp.flushBuffer();
             System.out.println("Response sent");
-            //req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
