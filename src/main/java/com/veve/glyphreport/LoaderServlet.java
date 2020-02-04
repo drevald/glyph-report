@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
@@ -91,7 +92,9 @@ public class LoaderServlet extends DatabaseServlet {
             }
             resp.setStatus(HttpServletResponse.SC_OK);
             //resp.getOutputStream().write(insertedId);
-            resp.getOutputStream().write("Hi,there".getBytes());
+            DataOutputStream os = new DataOutputStream(resp.getOutputStream());
+            os.writeLong(123456789123456789L);
+            os.flush();
             resp.flushBuffer();
             System.out.println("Response sent");
             //req.getRequestDispatcher("/list").forward(req,resp);
