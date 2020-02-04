@@ -38,6 +38,8 @@ public class LoaderServlet extends DatabaseServlet {
         ByteArrayOutputStream reflowedImageStream = new ByteArrayOutputStream();
         ByteArrayOutputStream glyphsStream = new ByteArrayOutputStream();
         String appVersion = null;
+        String deviceModel = null;
+        String sdk = null;
         try {
             @SuppressWarnings("unchecked")
             List<FileItem> items = upload.parseRequest(req);
@@ -58,6 +60,12 @@ public class LoaderServlet extends DatabaseServlet {
                     if ("version".equals(item.getFieldName())) {
                         appVersion = item.getString();
                     }
+                    if ("deviceModel".equals(item.getFieldName())) {
+                        deviceModel = item.getString();
+                    }
+                    if ("sdk".equals(item.getFieldName())) {
+                        sdk = item.getString();
+                    }
                     System.out.println("Form field");
                     System.out.println("item.getName() = " + item.getName());
                     System.out.println("item.getFieldName() = " + item.getFieldName());
@@ -65,13 +73,15 @@ public class LoaderServlet extends DatabaseServlet {
                 }
             }
 
-            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, app_version_col, created_col) VALUES (?,?,?,?,?) RETURNING id_col";
+            String stm = "INSERT INTO reports_tbl(original_page_col, reflowed_page_col, glyphs_col, created_col, app_version_col, device_model, sdk) VALUES (?,?,?,?,?,?,?) RETURNING id_col";
             PreparedStatement pst = conn.prepareStatement(stm);
             pst.setBytes(1, originalImageStream.toByteArray());
             pst.setBytes(2, reflowedImageStream.toByteArray());
             pst.setBytes(3, glyphsStream.toByteArray());
-            pst.setString(4, appVersion);
-            pst.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+            pst.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
+            pst.setString(5, appVersion);
+            pst.setString(6, deviceModel);
+            pst.setString(7, sdk);
             pst.execute();
             ResultSet resultSet = pst.getResultSet();
             int insertedId = -1;
@@ -79,9 +89,10 @@ public class LoaderServlet extends DatabaseServlet {
                 insertedId = resultSet.getInt(1);
                 System.out.println("Inserted row id is " + insertedId);
             }
-            if (insertedId > 0)
-            resp.getOutputStream().write(insertedId);
             resp.setStatus(HttpServletResponse.SC_OK);
+            resp.getOutputStream().write(insertedId);
+            resp.flushBuffer();
+            System.out.println("Response sent");
             //req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
