@@ -74,12 +74,15 @@ public class LoaderServlet extends DatabaseServlet {
             pst.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
             pst.execute();
             ResultSet resultSet = pst.getResultSet();
+            int insertedId = -1;
             if (resultSet.next()) {
-                int insertedId = resultSet.getInt(1);
+                insertedId = resultSet.getInt(1);
                 System.out.println("Inserted row id is " + insertedId);
             }
+            if (insertedId > 0)
+            resp.getOutputStream().write(insertedId);
             resp.setStatus(HttpServletResponse.SC_OK);
-            req.getRequestDispatcher("/list").forward(req,resp);
+            //req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
