@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.*;
@@ -90,10 +91,11 @@ public class LoaderServlet extends DatabaseServlet {
                 System.out.println("Inserted row id is " + insertedId);
             }
             resp.setStatus(HttpServletResponse.SC_OK);
-            resp.getOutputStream().write(insertedId);
+            DataOutputStream os = new DataOutputStream(resp.getOutputStream());
+            os.writeLong(insertedId);
+            os.flush();
             resp.flushBuffer();
             System.out.println("Response sent");
-            //req.getRequestDispatcher("/list").forward(req,resp);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -106,3 +108,26 @@ public class LoaderServlet extends DatabaseServlet {
 
 }
 
+
+
+
+
+//    public MesaDAO (Mesa mesa) {
+//        this.mesa = mesa;
+//    }
+//(...)
+//        String stm = "INSERT INTO mesa(tag, modelo, menor_complemento, peso_min, "
+//        + "peso_max, som, rotina, address64bits) "
+//        + "VALUES(?,?,?,?,?,?,?,?)";
+//        try {
+//        pst = con.prepareStatement(stm);
+//        pst.setString(1, mesa.getTag());
+//        pst.setString(2, mesa.getModelo());
+//        pst.setInt(3, mesa.getMenorComplemento());
+//        pst.setInt(4, mesa.getPesoMin());
+//        pst.setInt(5, mesa.getPesoMax());
+//        pst.setByte(6, mesa.getSom());
+//        pst.setByte(7, mesa.getRotina());
+//        pst.setBytes(8, mesa.getAddress64Bits());
+//        pst.executeUpdate();
+//        (...)
