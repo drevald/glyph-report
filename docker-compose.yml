@@ -1,30 +1,21 @@
-version: '1'
+version: '3'
 services:
   db:
     image: postgres:12-alpine
     environment:
       - POSTGRES_USER=admin
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=password
       - POSTGRES_DB=report
-    volumes:
-      - data:/home/data
     networks:
       - net
     ports:
       - 5432:5432
-  web:
-    build: .
-    networks:
-      - net
-    ports:
-      - 8080:8080
-    depends_on:
-      - backend
-    environment:
-      - REACT_APP_API_URL=http://localhost:8080/api
-      - REACT_APP_CHAT_URL=http://localhost:8080/chat
-      - PORT=8080
+#  web:
+#    build: .
+#    ports:
+#      - 8080:8080
+#    environment:
+##      - JDBC_DATABASE_URL=postgres://bjarxxfhnyzaud:82d800b8bdbd660edb1b098b893cc18fbc6dfe26cd94f3c042c9762c94c1452f@ec2-54-75-235-28.eu-west-1.compute.amazonaws.com:5432/ddn2q88n71rfkf
+#      - JDBC_DATABASE_URL=jdbc:postgres://admin:password@db:5432/report
 networks:
   net: {}
-volumes:
-  data: {}

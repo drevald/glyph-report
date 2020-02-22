@@ -17,6 +17,7 @@ public class DatabaseServlet extends HttpServlet {
         try {
             Class.forName("org.postgresql.Driver");
             String dbUrl = System.getenv("JDBC_DATABASE_URL");
+            System.out.println("JDBC_DATABASE_URL = " + dbUrl);
             conn = DriverManager.getConnection(dbUrl);
         } catch (Exception e) {
             e.printStackTrace();
