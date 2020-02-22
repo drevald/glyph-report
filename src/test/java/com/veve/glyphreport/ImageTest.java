@@ -13,7 +13,7 @@ public class ImageTest {
 
     @Test
     public void testImageMarkup() throws Exception {
-        File file = new File("src/test/res/page.jpg");
+        File file = new File("src/test/res/image.jpeg");
         InputStream is = new FileInputStream(file);
         BufferedImage buffOriginalImage = ImageIO.read(is);
         Graphics2D g = buffOriginalImage.createGraphics();
